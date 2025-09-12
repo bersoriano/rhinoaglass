@@ -2,6 +2,7 @@ import { WindshieldCatalog } from '@/components'
 import { FloatingHeader } from '@/components'
 import { Hero } from '@/components'
 import { ContactForm } from '@/components'
+import { Location } from '@/components'
 
 export default function Home() {
   return (
@@ -17,6 +18,9 @@ export default function Home() {
       
       {/* Contact Section */}
       <ContactForm />
+      
+      {/* Location Section */}
+      <Location />
       
       {/* Footer */}
       <footer className="bg-secondary-900 text-white py-12">

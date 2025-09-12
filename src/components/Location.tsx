@@ -177,7 +177,7 @@ export function Location() {
                         Mapa Interactivo
                       </h4>
                       <p className="text-secondary-600 text-sm mb-4">
-                        Haz clic en "Cómo Llegar" para ver la ubicación en Google Maps
+                        Haz clic en Cómo Llegar para ver la ubicación en Google Maps
                       </p>
                       <button
                         onClick={handleGetDirections}

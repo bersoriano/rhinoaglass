@@ -9,7 +9,7 @@ interface CTAButtonProps {
   
   export const CTAButton: React.FC<CTAButtonProps> = ({
     label = "Agenda una Visita",
-    page_location = "tel:+525579790800",
+    page_location = "tel:+525527488329",
     className = "",
     style = {}
   }) => {

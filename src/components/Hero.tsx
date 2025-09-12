@@ -22,7 +22,7 @@ export function Hero() {
             {/* Content will go here */}
             <CTAButton 
               label="Cotizar ahora"
-              page_location="tel:+525579790800"
+              page_location="tel:+525527488329"
               button_name="Hero_button"
               className="bg-blue-300 hover:bg-blue-500 text-black-700 font-semibold px-8 py-4 rounded-lg text-lg flex items-center m-6 md:m-8"
             />

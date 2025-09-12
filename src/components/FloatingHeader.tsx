@@ -52,7 +52,7 @@ export function FloatingHeader({ title }: FloatingHeaderProps) {
         <div className="flex w-full" />
         <CTAButton 
           label="Agenda una visita"
-          page_location="tel:+525579790800"
+          page_location="tel:+525527488329"
           button_name="Header_button"
           className="
             p-3

@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import vehicleObjects from '@/config/vehicles'
 import { Search, Filter, Grid3X3, List } from 'lucide-react'
+import { ImageCarouselModal } from './ImageCarouselModal'
 
 // Types
 interface ProductItem {
@@ -47,12 +48,16 @@ const allProducts: ProductItem[] = vehicleObjects.map(vehicle => {
     .replace('Ducato Maxi', 'Ducato Maxi')
     .replace('Etransit', 'E-Transit')
     .replace('Nv350', 'NV350')
-    .replace('Promaster', 'ProMaster')
-    .replace('Hiace', 'HiAce')
+    .replace('Promaster', 'Pro Master')
+    .replace('Hiace', 'Hiace')
     .replace('Caddyvan', 'Caddy Van')
     .replace('Eurovandiesel', 'Eurovan Diesel')
-  
-  const title = `${vehicle.manufacturer} ${modelName} ${yearRange}`
+    .replace('Ducatoambulancia', 'Ducato Ambulancia')
+    .replace('Transit110', 'Transit 110')
+    .replace('Transitambulancia', 'Transit Ambulancia')
+    .replace('Transitcorta', 'Transit Corta')
+
+  const title = `${modelName} ${yearRange}`
   
   return {
     id: vehicle.id,
@@ -71,6 +76,31 @@ export function WindshieldCatalog() {
   const [selectedManufacturer, setSelectedManufacturer] = useState<Manufacturer | 'Todos'>('Todos')
   const [searchTerm, setSearchTerm] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedVehicle, setSelectedVehicle] = useState<{ model: string; title: string; yearRange?: string } | null>(null)
+
+  // Handle opening modal
+  const handleViewDetails = (productItem: ProductItem) => {
+    // Find the original vehicle object to get the model
+    const vehicle = vehicleObjects.find(v => v.id === productItem.id)
+    if (vehicle) {
+      // Create year range string from vehicle data
+      const yearRange = vehicle.yearStart && vehicle.yearEnd 
+        ? `${vehicle.yearStart}-${vehicle.yearEnd}`
+        : vehicle.yearStart 
+        ? `${vehicle.yearStart}+`
+        : vehicle.yearEnd 
+        ? `hasta-${vehicle.yearEnd}`
+        : undefined
+      
+      setSelectedVehicle({
+        model: vehicle.model,
+        title: productItem.title,
+        yearRange
+      })
+      setModalOpen(true)
+    }
+  }
 
   // Calculate counts for each manufacturer
   const manufacturerCounts = useMemo(() => {
@@ -258,7 +288,10 @@ export function WindshieldCatalog() {
                           {item.title}
                         </h4>
                         <div className="mt-4 pt-4 border-t border-secondary-100">
-                          <button className="btn btn-sm btn-primary w-full">
+                          <button 
+                            onClick={() => handleViewDetails(item)}
+                            className="btn btn-sm btn-primary w-full"
+                          >
                             Ver Detalles
                           </button>
                         </div>
@@ -288,7 +321,10 @@ export function WindshieldCatalog() {
                                 {item.manufacturer}
                               </span>
                             </div>
-                            <button className="btn btn-sm btn-primary ml-4">
+                            <button 
+                              onClick={() => handleViewDetails(item)}
+                              className="btn btn-sm btn-primary ml-4"
+                            >
                               Ver Detalles
                             </button>
                           </div>
@@ -338,6 +374,15 @@ export function WindshieldCatalog() {
           </div>
         </div>
       </div>
+      
+      {/* Image Carousel Modal */}
+      <ImageCarouselModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        vehicleModel={selectedVehicle?.model || ''}
+        vehicleTitle={selectedVehicle?.title || ''}
+        yearRange={selectedVehicle?.yearRange}
+      />
     </section>
   )
 }

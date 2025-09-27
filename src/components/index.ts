@@ -1,5 +1,6 @@
 export { Button } from './Button'
 export { WindshieldCatalog } from './WindshieldCatalog'
+export { ImageCarouselModal } from './ImageCarouselModal'
 export { FloatingHeader } from './FloatingHeader'
 export { Hero } from './Hero'
 export { ContactForm } from './ContactForm'

@@ -44,7 +44,7 @@ export default function AdminQRCodesPage() {
           <ol className="space-y-2 text-blue-800">
             <li className="flex gap-2">
               <span className="font-semibold">1.</span>
-              <span>Copia la URL del agente usando el botón "Copiar"</span>
+              <span>Copia la URL del agente usando el botón Copiar</span>
             </li>
             <li className="flex gap-2">
               <span className="font-semibold">2.</span>

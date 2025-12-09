@@ -1,5 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ui-avatars.com',
+        port: '',
+        pathname: '/api/**',
+      },
+    ],
+  },
   experimental: {
     // Enable experimental features for Next.js 15
     turbo: {
